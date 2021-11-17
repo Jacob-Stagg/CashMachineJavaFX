@@ -29,7 +29,7 @@ public class CashMachine {
         );
     }
 
-    public void deposit(int amount) {
+    public void deposit(Float amount) {
         if (accountData != null) {
             tryCall(
                     () -> bank.deposit(accountData, amount),
@@ -38,7 +38,7 @@ public class CashMachine {
         }
     }
 
-    public void withdraw(int amount) {
+    public void withdraw(Float amount) {
         if (accountData != null) {
             tryCall(
                     () -> bank.withdraw(accountData, amount),
@@ -55,7 +55,7 @@ public class CashMachine {
 
     @Override
     public String toString() {
-        return accountData != null ? accountData.toString() : "Try account 1000 or 2000 and click submit.";
+        return accountData != null ? accountData.toString() : "Try account 1, 2, 3, or 4 and click Set Account ID.";
     }
 
     private <T> void tryCall(Supplier<ActionResult<T> > action, Consumer<T> postAction) {

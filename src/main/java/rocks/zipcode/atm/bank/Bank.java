@@ -13,12 +13,20 @@ public class Bank {
     private Map<Integer, Account> accounts = new HashMap<>();
 
     public Bank() {
-        accounts.put(1000, new BasicAccount(new AccountData(
-                1000, "Example 1", "example1@gmail.com", 500
+        accounts.put(1, new BasicAccount(new AccountData(
+                1, "Jacob Stagg", "StaggJ@gmail.com", 2500f
         )));
 
-        accounts.put(2000, new PremiumAccount(new AccountData(
-                2000, "Example 2", "example2@gmail.com", 200
+        accounts.put(2, new PremiumAccount(new AccountData(
+                2, "Jacob Lee Stagg", "StaggJ@gmail.com", 3000f
+        )));
+
+        accounts.put(3, new BasicAccount(new AccountData(
+                3, "Bill Bob", "BobB@gmail.com", 1500f
+        )));
+
+        accounts.put(4, new PremiumAccount(new AccountData(
+                4, "Bill B Bob", "BobB@gmail.com", 2000f
         )));
     }
 
@@ -28,25 +36,25 @@ public class Bank {
         if (account != null) {
             return ActionResult.success(account.getAccountData());
         } else {
-            return ActionResult.fail("No account with id: " + id + "\nTry account 1000 or 2000");
+            return ActionResult.fail("No account with id: " + id + "\nTry account 1, 2, 3, or 4.");
         }
     }
 
-    public ActionResult<AccountData> deposit(AccountData accountData, int amount) {
+    public ActionResult<AccountData> deposit(AccountData accountData, float amount) {
         Account account = accounts.get(accountData.getId());
         account.deposit(amount);
 
         return ActionResult.success(account.getAccountData());
     }
 
-    public ActionResult<AccountData> withdraw(AccountData accountData, int amount) {
+    public ActionResult<AccountData> withdraw(AccountData accountData, float amount) {
         Account account = accounts.get(accountData.getId());
         boolean ok = account.withdraw(amount);
 
         if (ok) {
             return ActionResult.success(account.getAccountData());
         } else {
-            return ActionResult.fail("Withdraw failed: " + amount + ". Account has: " + account.getBalance());
+            return ActionResult.fail("Your withdraw of $" + amount + " has failed. Your account balance is $" + account.getBalance() + ".");
         }
     }
 }

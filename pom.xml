@@ -5,6 +5,13 @@
     <groupId>com.almasb</groupId>
     <artifactId>CashMachine</artifactId>
     <version>0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.almasb</groupId>
+            <artifactId>CashMachine</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
     <packaging>jar</packaging>
 
     <properties>

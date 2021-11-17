@@ -9,9 +9,9 @@ public final class AccountData {
     private final String name;
     private final String email;
 
-    private final int balance;
+    private final float balance;
 
-    AccountData(int id, String name, String email, int balance) {
+    AccountData(int id, String name, String email, float balance) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -30,15 +30,25 @@ public final class AccountData {
         return email;
     }
 
-    public int getBalance() {
+    public float getBalance() {
         return balance;
     }
 
     @Override
     public String toString() {
-        return "Account id: " + id + '\n' +
-                "Name: " + name + '\n' +
-                "Email: " + email + '\n' +
-                "Balance: " + balance;
+        if (balance > -1000f && balance < 0f) {
+            return "Account id: " + id + '\n' +
+                    "Name: " + name + '\n' +
+                    "Email: " + email + '\n' +
+                    "Balance: " + balance + '\n' +
+                    "Your account has an overdraft of $" + balance + "." +
+                    "\nIf your overdraft reaches $-1000, " + "you will no longer" +
+                    " be able to withdraw from this account.";
+        } else {
+            return "Account id: " + id + '\n' +
+                    "Name: " + name + '\n' +
+                    "Email: " + email + '\n' +
+                    "Balance: " + balance;
+        }
     }
 }
